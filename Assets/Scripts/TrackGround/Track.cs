@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Track : MonoBehaviour
 {
-    [SerializeField] private float _timeBeforeDestroy = 2.0f;
-    
     private TrackSpawner _trackSpawner;
     private bool _isTrackSpawned;
 
@@ -18,9 +16,6 @@ public class Track : MonoBehaviour
         {
             _isTrackSpawned = true;
             _trackSpawner.SpawnTrack(true);
-            
-            // !!!DEACTIVATE!!!
-            Destroy(gameObject, _timeBeforeDestroy);
         }
     }
 }

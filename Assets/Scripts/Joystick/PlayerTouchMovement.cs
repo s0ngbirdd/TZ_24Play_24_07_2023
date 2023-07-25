@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -10,13 +11,14 @@ namespace Joystick
     {
         [SerializeField] private Vector2 _joystickSize = new Vector2(100, 100);
         [SerializeField] private FloatingJoystick _joystick;
-        [SerializeField] private float _moveSpeed = 5f;
-        [SerializeField] private float _borderMaxXPosition = 1.99f;
+        [SerializeField] private float _moveSpeed = 5;
+        [SerializeField] private float _borderMaxXPosition = 2;
     
         private CharacterController _characterController;
         //private Animator _animator;
         private Finger _movementFinger;
         private Vector2 _movementAmount;
+        private float _startMoveSpeed;
 
         private void Awake()
         {
@@ -30,6 +32,8 @@ namespace Joystick
             ETouch.Touch.onFingerDown += HandleFingerDown;
             ETouch.Touch.onFingerUp += HandleFingerUp;
             ETouch.Touch.onFingerMove += HandleFingerMove;
+
+            GameEnder.OnGameEnd += DisableMoveSpeed;
         }
 
         private void OnDisable()
@@ -38,20 +42,28 @@ namespace Joystick
             ETouch.Touch.onFingerUp -= HandleFingerUp;
             ETouch.Touch.onFingerMove -= HandleFingerMove;
             EnhancedTouchSupport.Disable();
+            
+            GameEnder.OnGameEnd -= DisableMoveSpeed;
+        }
+
+        private void Start()
+        {
+            _startMoveSpeed = _moveSpeed;
+            //_moveSpeed = 0;
         }
 
         private void Update()
         {
             Vector3 forwardMove = transform.forward * (_moveSpeed * Time.deltaTime);
             Vector3 horizontalMove = Vector3.zero;
-            
+        
             if (transform.position.x * Mathf.Sign(_movementAmount.x) < _borderMaxXPosition)
             {
                 horizontalMove = transform.right * (_movementAmount.x * _moveSpeed * Time.deltaTime);
             }
-            
+        
             _characterController.Move(forwardMove + horizontalMove);
-            
+
             //Vector3 scaledMovement = _moveSpeed * Time.deltaTime * new Vector3(_movementAmount.x, 0, 0);//_movementAmount.y);
 
             //_characterController.transform.LookAt(_characterController.transform.position + scaledMovement, Vector3.up);
@@ -128,6 +140,16 @@ namespace Joystick
             }
 
             return startPosition;
+        }
+
+        private void EnableMoveSpeed()
+        {
+            _moveSpeed = _startMoveSpeed;
+        }
+        
+        private void DisableMoveSpeed()
+        {
+            _moveSpeed = 0;
         }
     }
 }

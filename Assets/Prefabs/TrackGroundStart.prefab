@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &35065758018302724
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4495505177405466884}
-  - component: {fileID: 5261089811002939295}
-  m_Layer: 9
-  m_Name: WallPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4495505177405466884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35065758018302724}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8635103698508136599}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5261089811002939295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35065758018302724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bee0890a9b6f74b88455609e30e00e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _walls:
-  - {fileID: 1090820201162020106, guid: 0a0c1619af70ea742ae97027a605e99e, type: 3}
-  - {fileID: 5322233705596971098, guid: 1e983e526680a274d86c4e2f76de55f0, type: 3}
-  - {fileID: 5590199812855154927, guid: 57f09fe419fedea4cbbcd6985800a599, type: 3}
-  - {fileID: 756523416753731174, guid: 26881ff1d853e4d4a89cc18bd4957f2d, type: 3}
-  - {fileID: 4301057367530445338, guid: f15460e10a7c46f4c8677dbf9533ee0f, type: 3}
 --- !u!1 &1075825224252458222
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +77,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8635103698508136599}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2339188542570450758
 MonoBehaviour:
@@ -174,7 +124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8635103698508136599}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6739292207467842986
 MonoBehaviour:
@@ -287,7 +237,7 @@ GameObject:
   - component: {fileID: 1917522964731566839}
   - component: {fileID: 3273053880961015372}
   m_Layer: 9
-  m_Name: TrackGround
+  m_Name: TrackGroundStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +257,6 @@ Transform:
   m_Children:
   - {fileID: 4705048623700722288}
   - {fileID: 4312668912135765678}
-  - {fileID: 4495505177405466884}
   - {fileID: 4185176096760831334}
   - {fileID: 5562243595005021410}
   m_Father: {fileID: 0}

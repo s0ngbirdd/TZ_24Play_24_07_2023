@@ -3,15 +3,22 @@ using UnityEngine;
 public class RagdollSpawner : MonoBehaviour
 {
     [SerializeField] private Transform _ragdollPrefab;
-
-    private void Update()
+    
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Transform ragdollTransform = Instantiate(_ragdollPrefab, transform.position, transform.rotation);
-            MatchAllChildTransforms(transform, ragdollTransform);
-            Destroy(gameObject);
-        }
+        GameEnder.OnGameEnd += SpawnRagdoll;
+    }
+
+    private void OnDisable()
+    {
+        GameEnder.OnGameEnd -= SpawnRagdoll;
+    }
+
+    private void SpawnRagdoll()
+    {
+        Transform ragdollTransform = Instantiate(_ragdollPrefab, transform.position, transform.rotation);
+        MatchAllChildTransforms(transform, ragdollTransform);
+        Destroy(gameObject);
     }
 
     private void MatchAllChildTransforms(Transform root, Transform clone)

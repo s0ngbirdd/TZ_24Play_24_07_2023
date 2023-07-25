@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pickup
+  - Wall
+  - Player
+  - Track
+  - ObjectDeactivator
   - 
   - 
   - 
