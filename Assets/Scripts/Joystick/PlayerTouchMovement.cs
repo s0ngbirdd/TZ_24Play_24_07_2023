@@ -6,24 +6,24 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 namespace Joystick
 {
     [RequireComponent(typeof(CharacterController))]
-    //[RequireComponent(typeof(Animator))]
     public class PlayerTouchMovement : MonoBehaviour
     {
+        public static event Action OnEnableMoveSpeed; 
+
         [SerializeField] private Vector2 _joystickSize = new Vector2(100, 100);
         [SerializeField] private FloatingJoystick _joystick;
         [SerializeField] private float _moveSpeed = 5;
         [SerializeField] private float _borderMaxXPosition = 2;
     
         private CharacterController _characterController;
-        //private Animator _animator;
         private Finger _movementFinger;
         private Vector2 _movementAmount;
         private float _startMoveSpeed;
+        private bool _isMoveSpeedEnabled;
 
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            //_animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -49,7 +49,7 @@ namespace Joystick
         private void Start()
         {
             _startMoveSpeed = _moveSpeed;
-            //_moveSpeed = 0;
+            DisableMoveSpeed();
         }
 
         private void Update()
@@ -74,8 +74,11 @@ namespace Joystick
         {
             if (_movementFinger == null)
             {
-                //_animator.SetBool("IsRunning", true);
-            
+                if (!_isMoveSpeedEnabled)
+                {
+                    EnableMoveSpeed();
+                }
+
                 _movementFinger = touchedFinger;
                 _movementAmount = Vector2.zero;
                 _joystick.gameObject.SetActive(true);
@@ -88,8 +91,6 @@ namespace Joystick
         {
             if (lostFinger == _movementFinger)
             {
-                //_animator.SetBool("IsRunning", false);
-            
                 _movementFinger = null;
                 _joystick.knob.anchoredPosition = Vector2.zero;
                 _joystick.gameObject.SetActive(false);
@@ -145,6 +146,7 @@ namespace Joystick
         private void EnableMoveSpeed()
         {
             _moveSpeed = _startMoveSpeed;
+            OnEnableMoveSpeed?.Invoke();
         }
         
         private void DisableMoveSpeed()

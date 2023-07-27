@@ -7,12 +7,28 @@ namespace ObjectPool
     {
         public static ObjectPool Instance;
 
-        [SerializeField] private GameObject _fruitPrefab;
-        [SerializeField] private GameObject _collectTextPrefab;
-        [SerializeField] private int _poolNumber;
+        [SerializeField] private GameObject _trackPrefab;
+        [SerializeField] private GameObject _pickupCubePrefab;
+        [SerializeField] private GameObject _collectCubeTextPrefab;
+        
+        [Header("Walls")]
+        [SerializeField] private GameObject _wall1Prefab;
+        [SerializeField] private GameObject _wall2Prefab;
+        [SerializeField] private GameObject _wall3Prefab;
+        [SerializeField] private GameObject _wall4Prefab;
+        [SerializeField] private GameObject _wall5Prefab;
+        
+        [SerializeField] private int _poolNumber = 5;
 
-        private List<GameObject> _fruitPooledObjects;
-        private List<GameObject> _collectTextPooledObjects;
+        private List<GameObject> _trackPooledObjects;
+        private List<GameObject> _pickupCubePooledObjects;
+        private List<GameObject> _collectCubeTextPooledObjects;
+        
+        private List<GameObject> _wall1PooledObjects;
+        private List<GameObject> _wall2PooledObjects;
+        private List<GameObject> _wall3PooledObjects;
+        private List<GameObject> _wall4PooledObjects;
+        private List<GameObject> _wall5PooledObjects;
     
         private GameObject tempObject;
 
@@ -31,68 +47,148 @@ namespace ObjectPool
 
         private void Start()
         {
-            _fruitPooledObjects = new List<GameObject>();
-            _collectTextPooledObjects = new List<GameObject>();
+            _trackPooledObjects = new List<GameObject>();
+            _pickupCubePooledObjects = new List<GameObject>();
+            _collectCubeTextPooledObjects = new List<GameObject>();
+            
+            _wall1PooledObjects = new List<GameObject>();
+            _wall2PooledObjects = new List<GameObject>();
+            _wall3PooledObjects = new List<GameObject>();
+            _wall4PooledObjects = new List<GameObject>();
+            _wall5PooledObjects = new List<GameObject>();
         
-            InstantiateFruits(_poolNumber, _fruitPrefab, _fruitPooledObjects);
-            InstantiateFruits(_poolNumber, _collectTextPrefab, _collectTextPooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _trackPrefab, _trackPooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _pickupCubePrefab, _pickupCubePooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _collectCubeTextPrefab, _collectCubeTextPooledObjects);
+            
+            InstantiateObjectsOnStart(_poolNumber, _wall1Prefab, _wall1PooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _wall2Prefab, _wall2PooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _wall3Prefab, _wall3PooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _wall4Prefab, _wall4PooledObjects);
+            InstantiateObjectsOnStart(_poolNumber, _wall5Prefab, _wall5PooledObjects);
         }
     
-        public GameObject GetFruitPooledObject()
+        public GameObject GetTrackPooledObject()
         {
-            for (int i = 0; i < _fruitPooledObjects.Count; i++)
+            for (int i = 0; i < _trackPooledObjects.Count; i++)
             {
-                if (!_fruitPooledObjects[i].activeInHierarchy)
+                if (!_trackPooledObjects[i].activeInHierarchy)
                 {
-                    return _fruitPooledObjects[i];
+                    return _trackPooledObjects[i];
                 }
             }
 
-            return InstantiateFruit(_fruitPrefab, _fruitPooledObjects);
+            return InstantiateObject(_trackPrefab, _trackPooledObjects);
         }
-
-        public GameObject GetCollectTextPooledObject()
+        
+        public GameObject GetPickupCubePooledObject()
         {
-            for (int i = 0; i < _collectTextPooledObjects.Count; i++)
+            for (int i = 0; i < _pickupCubePooledObjects.Count; i++)
             {
-                if (!_collectTextPooledObjects[i].activeInHierarchy)
+                if (!_pickupCubePooledObjects[i].activeInHierarchy)
                 {
-                    return _collectTextPooledObjects[i];
+                    return _pickupCubePooledObjects[i];
                 }
             }
 
-            return InstantiateFruit(_collectTextPrefab, _collectTextPooledObjects);
+            return InstantiateObject(_pickupCubePrefab, _pickupCubePooledObjects);
         }
 
-        private void InstantiateFruits(int instantiateNumber, GameObject fruit, List<GameObject> fruitPool)
+        public GameObject GetCollectCubeTextPooledObject()
+        {
+            for (int i = 0; i < _collectCubeTextPooledObjects.Count; i++)
+            {
+                if (!_collectCubeTextPooledObjects[i].activeInHierarchy)
+                {
+                    return _collectCubeTextPooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_collectCubeTextPrefab, _collectCubeTextPooledObjects);
+        }
+        
+        public GameObject GetWall1PooledObject()
+        {
+            for (int i = 0; i < _wall1PooledObjects.Count; i++)
+            {
+                if (!_wall1PooledObjects[i].activeInHierarchy)
+                {
+                    return _wall1PooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_wall1Prefab, _wall1PooledObjects);
+        }
+        
+        public GameObject GetWall2PooledObject()
+        {
+            for (int i = 0; i < _wall2PooledObjects.Count; i++)
+            {
+                if (!_wall2PooledObjects[i].activeInHierarchy)
+                {
+                    return _wall2PooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_wall2Prefab, _wall2PooledObjects);
+        }
+        
+        public GameObject GetWall3PooledObject()
+        {
+            for (int i = 0; i < _wall3PooledObjects.Count; i++)
+            {
+                if (!_wall3PooledObjects[i].activeInHierarchy)
+                {
+                    return _wall3PooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_wall3Prefab, _wall3PooledObjects);
+        }
+        
+        public GameObject GetWall4PooledObject()
+        {
+            for (int i = 0; i < _wall4PooledObjects.Count; i++)
+            {
+                if (!_wall4PooledObjects[i].activeInHierarchy)
+                {
+                    return _wall4PooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_wall4Prefab, _wall4PooledObjects);
+        }
+        
+        public GameObject GetWall5PooledObject()
+        {
+            for (int i = 0; i < _wall5PooledObjects.Count; i++)
+            {
+                if (!_wall5PooledObjects[i].activeInHierarchy)
+                {
+                    return _wall5PooledObjects[i];
+                }
+            }
+
+            return InstantiateObject(_wall5Prefab, _wall5PooledObjects);
+        }
+
+        private void InstantiateObjectsOnStart(int instantiateNumber, GameObject objectPrefab, List<GameObject> objectPool)
         {
             for (int i = 0; i < instantiateNumber; i++)
             {
-                tempObject = Instantiate(fruit, transform);
+                tempObject = Instantiate(objectPrefab, transform);
                 tempObject.SetActive(false);
-                fruitPool.Add(tempObject);
+                objectPool.Add(tempObject);
             }
         }
     
-        private GameObject InstantiateFruit(GameObject fruit, List<GameObject> fruitPool)
+        private GameObject InstantiateObject(GameObject objectPrefab, List<GameObject> objectPool)
         {
-            tempObject = Instantiate(fruit, transform);
+            tempObject = Instantiate(objectPrefab, transform);
             tempObject.SetActive(false);
-            fruitPool.Add(tempObject);
-        
+            objectPool.Add(tempObject);
+
             return tempObject;
         }
-        
-        /*private void SpawnApple()
-        {
-            GameObject fruit = ObjectPool.ObjectPool.Instance.GetFruitPooledObject();
-            fruit.GetComponent<FruitPicker>().SetFruitBehaviour(_fruitApple);
-            fruit.transform.position = transform.position;
-            fruit.transform.rotation = Quaternion.identity;
-        
-            fruit.transform.SetParent(transform);
-        
-            fruit.SetActive(true);
-        }*/
     }
 }

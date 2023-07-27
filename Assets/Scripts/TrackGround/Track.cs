@@ -5,6 +5,11 @@ public class Track : MonoBehaviour
     private TrackSpawner _trackSpawner;
     private bool _isTrackSpawned;
 
+    private void OnDisable()
+    {
+        _isTrackSpawned = false;
+    }
+    
     private void Start()
     {
         _trackSpawner = FindObjectOfType<TrackSpawner>();

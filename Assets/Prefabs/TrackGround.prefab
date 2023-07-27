@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4495505177405466884
 Transform:
@@ -65,7 +65,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4312668912135765678
 Transform:
@@ -94,8 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d94ee6469bf36438eb03e2b1d258c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubePickupPrefab: {fileID: 3481367610352654943, guid: 085ad57d0f0d5924f8ec77fd5eeb27f9,
-    type: 3}
   _spawnPositionXOffset: 1.5
 --- !u!1 &1279652337773702007
 GameObject:
@@ -112,7 +110,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4185176096760831334
 Transform:
@@ -141,8 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d94ee6469bf36438eb03e2b1d258c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubePickupPrefab: {fileID: 3481367610352654943, guid: 085ad57d0f0d5924f8ec77fd5eeb27f9,
-    type: 3}
   _spawnPositionXOffset: 1.5
 --- !u!1 &3564309908668720930
 GameObject:
@@ -159,7 +155,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5562243595005021410
 Transform:
@@ -188,8 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d94ee6469bf36438eb03e2b1d258c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubePickupPrefab: {fileID: 3481367610352654943, guid: 085ad57d0f0d5924f8ec77fd5eeb27f9,
-    type: 3}
   _spawnPositionXOffset: 1.5
 --- !u!1 &3588030195717391028
 GameObject:
@@ -207,7 +201,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4705048623700722288
 Transform:
@@ -291,7 +285,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8635103698508136599
 Transform:
@@ -325,7 +319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6675e3cbd6fd8024b82a657d7772bd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBeforeDestroy: 3
 --- !u!65 &1917522964731566839
 BoxCollider:
   m_ObjectHideFlags: 0

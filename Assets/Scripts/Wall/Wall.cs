@@ -1,11 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    // Start is called before the first frame update
+    void Start()
     {
-        CinemachineShake.Instance.ShakeCamera(7.0f, 0.3f);
         
-        collision.transform.parent = null;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

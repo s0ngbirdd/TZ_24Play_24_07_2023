@@ -23,14 +23,14 @@ public class CubeStacker : MonoBehaviour
     private void SetCubeBehaviour(Collider other)
     {
         GameObject cube = other.gameObject;
-        cube.name = "Pickup" + _cubeCount++;
+        //cube.name = "Pickup" + _cubeCount++;
         cube.layer = LayerMask.NameToLayer("Default");
         cube.transform.SetParent(_parentObjectTransform);
         cube.transform.position = _nextStackPoint.position;
         cube.GetComponent<Collider>().isTrigger = false;
         
         Rigidbody cubeRigidbody = other.AddComponent<Rigidbody>();
-        cubeRigidbody.angularDrag = 0;
+        //cubeRigidbody.angularDrag = 0;
         cubeRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         cubeRigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
     }
