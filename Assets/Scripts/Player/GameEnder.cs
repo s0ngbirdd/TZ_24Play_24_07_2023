@@ -1,16 +1,20 @@
 using System;
+using CameraShake;
 using UnityEngine;
 
-public class GameEnder : MonoBehaviour
+namespace Player
 {
-    public static event Action OnGameEnd;
-
-    private void OnCollisionEnter(Collision collision)
+    public class GameEnder : MonoBehaviour
     {
-        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Wall")))
+        public static event Action OnGameEnd;
+
+        private void OnCollisionEnter(Collision collision)
         {
-            CinemachineShake.Instance.ShakeCamera(7.0f, 0.3f);
-            OnGameEnd?.Invoke();
+            if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Wall")))
+            {
+                CinemachineShake.Instance.ShakeCamera(7.0f, 0.3f);
+                OnGameEnd?.Invoke();
+            }
         }
     }
 }

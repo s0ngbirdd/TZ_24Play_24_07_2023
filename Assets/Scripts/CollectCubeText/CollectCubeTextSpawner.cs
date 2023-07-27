@@ -1,28 +1,26 @@
+using Player;
 using UnityEngine;
 
-public class CollectCubeTextSpawner : MonoBehaviour
+namespace CollectCubeText
 {
-    //[SerializeField] private GameObject _collectCubeTextPrefab;
-    //[SerializeField] private Transform _parentObjectTransform;
-
-    private void OnEnable()
+    public class CollectCubeTextSpawner : MonoBehaviour
     {
-        CubeStacker.OnStackCube += SpawnCollectCubetext;
-    }
+        private void OnEnable()
+        {
+            CubeStacker.OnStackCube += SpawnCollectCubeText;
+        }
 
-    private void OnDisable()
-    {
-        CubeStacker.OnStackCube -= SpawnCollectCubetext;
-    }
+        private void OnDisable()
+        {
+            CubeStacker.OnStackCube -= SpawnCollectCubeText;
+        }
 
-    private void SpawnCollectCubetext()
-    {
-        GameObject collectCubetext = ObjectPool.ObjectPool.Instance.GetCollectCubeTextPooledObject();
-        collectCubetext.transform.position = transform.position;
-        collectCubetext.transform.rotation = Quaternion.identity;
-        collectCubetext.SetActive(true);
-        
-        //GameObject obj = Instantiate(_collectCubeTextPrefab, transform.position, Quaternion.identity);
-        //obj.transform.SetParent(_parentObjectTransform, true);
+        private void SpawnCollectCubeText()
+        {
+            GameObject collectCubeText = ObjectPool.ObjectPool.Instance.GetCollectCubeTextPooledObject();
+            collectCubeText.transform.position = transform.position;
+            collectCubeText.transform.rotation = Quaternion.identity;
+            collectCubeText.SetActive(true);
+        }
     }
 }

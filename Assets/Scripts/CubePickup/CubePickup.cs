@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CubePickup : MonoBehaviour
+namespace CubePickup
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CubePickup : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
     }
 }

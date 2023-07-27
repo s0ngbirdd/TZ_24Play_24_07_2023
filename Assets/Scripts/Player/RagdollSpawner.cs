@@ -1,38 +1,41 @@
 using UnityEngine;
 
-public class RagdollSpawner : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private Transform _ragdollPrefab;
+    public class RagdollSpawner : MonoBehaviour
+    {
+        [SerializeField] private Transform _ragdollPrefab;
     
-    private void OnEnable()
-    {
-        GameEnder.OnGameEnd += SpawnRagdoll;
-    }
-
-    private void OnDisable()
-    {
-        GameEnder.OnGameEnd -= SpawnRagdoll;
-    }
-
-    private void SpawnRagdoll()
-    {
-        Transform ragdollTransform = Instantiate(_ragdollPrefab, transform.position, transform.rotation);
-        MatchAllChildTransforms(transform, ragdollTransform);
-        Destroy(gameObject);
-    }
-
-    private void MatchAllChildTransforms(Transform root, Transform clone)
-    {
-        foreach (Transform child in root)
+        private void OnEnable()
         {
-            Transform cloneChild = clone.Find(child.name);
+            GameEnder.OnGameEnd += SpawnRagdoll;
+        }
 
-            if (cloneChild != null)
+        private void OnDisable()
+        {
+            GameEnder.OnGameEnd -= SpawnRagdoll;
+        }
+
+        private void SpawnRagdoll()
+        {
+            Transform ragdollTransform = Instantiate(_ragdollPrefab, transform.position, transform.rotation);
+            MatchAllChildTransforms(transform, ragdollTransform);
+            Destroy(gameObject);
+        }
+
+        private void MatchAllChildTransforms(Transform root, Transform clone)
+        {
+            foreach (Transform child in root)
             {
-                cloneChild.position = child.position;
-                cloneChild.rotation = child.rotation;
+                Transform cloneChild = clone.Find(child.name);
+
+                if (cloneChild != null)
+                {
+                    cloneChild.position = child.position;
+                    cloneChild.rotation = child.rotation;
                 
-                MatchAllChildTransforms(child, cloneChild);
+                    MatchAllChildTransforms(child, cloneChild);
+                }
             }
         }
     }

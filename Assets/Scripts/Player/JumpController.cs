@@ -1,27 +1,30 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class JumpController : MonoBehaviour
+namespace Player
 {
-    private Animator _animator;
-
-    private void Awake()
+    [RequireComponent(typeof(Animator))]
+    public class JumpController : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-    }
+        private Animator _animator;
 
-    private void OnEnable()
-    {
-        CubeStacker.OnStackCube += PlayJumpAnimation;
-    }
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
-    private void OnDisable()
-    {
-        CubeStacker.OnStackCube -= PlayJumpAnimation;
-    }
+        private void OnEnable()
+        {
+            CubeStacker.OnStackCube += PlayJumpAnimation;
+        }
 
-    private void PlayJumpAnimation()
-    {
-        _animator.SetTrigger("Jump");
+        private void OnDisable()
+        {
+            CubeStacker.OnStackCube -= PlayJumpAnimation;
+        }
+
+        private void PlayJumpAnimation()
+        {
+            _animator.SetTrigger("Jump");
+        }
     }
 }

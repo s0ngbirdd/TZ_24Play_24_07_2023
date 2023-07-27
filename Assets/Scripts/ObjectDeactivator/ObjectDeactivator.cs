@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class ObjectDeactivator : MonoBehaviour
+namespace ObjectDeactivator
 {
-    private void OnTriggerEnter(Collider other)
+    public class ObjectDeactivator : MonoBehaviour
     {
-        if (other.GetComponentInChildren<Wall>())
+        private void OnTriggerEnter(Collider other)
         {
-            Wall wall = other.GetComponentInChildren<Wall>();
-            wall.gameObject.SetActive(false);
-        }
+            if (other.GetComponentInChildren<Wall.Wall>())
+            {
+                Wall.Wall wall = other.GetComponentInChildren<Wall.Wall>();
+                wall.gameObject.SetActive(false);
+            }
         
-        if (other.GetComponentInChildren<CubePickup>())
-        {
-            CubePickup сubePickup = other.GetComponentInChildren<CubePickup>();
-            сubePickup.gameObject.SetActive(false);
-        }
+            if (other.GetComponentInChildren<CubePickup.CubePickup>())
+            {
+                CubePickup.CubePickup сubePickup = other.GetComponentInChildren<CubePickup.CubePickup>();
+                сubePickup.gameObject.SetActive(false);
+            }
         
-        other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
+        }
     }
 }

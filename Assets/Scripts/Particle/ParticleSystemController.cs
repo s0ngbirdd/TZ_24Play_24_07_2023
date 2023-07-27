@@ -1,31 +1,34 @@
 using Joystick;
+using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class ParticleSystemController : MonoBehaviour
+namespace Particle
 {
-    [SerializeField] private ParticleSystem _stackParticle;
-    [SerializeField] private ParticleSystem _warpParticle;
-
-    private void OnEnable()
+    public class ParticleSystemController : MonoBehaviour
     {
-        CubeStacker.OnStackCube += PlayStackParticle;
-        PlayerTouchMovement.OnEnableMoveSpeed += PlayWarpParticle;
-    }
+        [SerializeField] private ParticleSystem _stackParticle;
+        [SerializeField] private ParticleSystem _warpParticle;
 
-    private void OnDisable()
-    {
-        CubeStacker.OnStackCube -= PlayStackParticle;
-        PlayerTouchMovement.OnEnableMoveSpeed -= PlayWarpParticle;
-    }
+        private void OnEnable()
+        {
+            CubeStacker.OnStackCube += PlayStackParticle;
+            PlayerTouchMovement.OnEnableMoveSpeed += PlayWarpParticle;
+        }
 
-    private void PlayStackParticle()
-    {
-        _stackParticle.Play();
-    }
+        private void OnDisable()
+        {
+            CubeStacker.OnStackCube -= PlayStackParticle;
+            PlayerTouchMovement.OnEnableMoveSpeed -= PlayWarpParticle;
+        }
+
+        private void PlayStackParticle()
+        {
+            _stackParticle.Play();
+        }
     
-    private void PlayWarpParticle()
-    {
-        _warpParticle.Play();
+        private void PlayWarpParticle()
+        {
+            _warpParticle.Play();
+        }
     }
 }

@@ -1,37 +1,15 @@
-using System;
+using CameraShake;
 using UnityEngine;
 
-public class CubeWall : MonoBehaviour
+namespace Wall
 {
-    private Track _track;
-
-    /*private void OnEnable()
+    public class CubeWall : MonoBehaviour
     {
-        _track = GetComponentInParent<Track>();
-
-        if (_track != null)
+        private void OnCollisionEnter(Collision collision)
         {
-            _track.OnTrackDisable += Unparent;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (_track != null)
-        {
-            _track.OnTrackDisable -= Unparent;
-        }
-    }*/
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        CinemachineShake.Instance.ShakeCamera(7.0f, 0.3f);
+            CinemachineShake.Instance.ShakeCamera(7.0f, 0.3f);
         
-        collision.transform.parent = null;
+            collision.transform.parent = null;
+        }
     }
-
-    /*private void Unparent()
-    {
-        transform.parent = null;
-    }*/
 }

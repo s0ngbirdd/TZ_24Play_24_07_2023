@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -9,11 +10,14 @@ namespace Joystick
     public class PlayerTouchMovement : MonoBehaviour
     {
         public static event Action OnEnableMoveSpeed; 
-
-        [SerializeField] private Vector2 _joystickSize = new Vector2(100, 100);
+        
+        [Header("Joystick")]
+        [SerializeField] private Vector2 _joystickSize = new Vector2(200, 200);
         [SerializeField] private FloatingJoystick _joystick;
-        [SerializeField] private float _moveSpeed = 5;
-        [SerializeField] private float _borderMaxXPosition = 2;
+        
+        [Header("Player Movement")]
+        [SerializeField] private float _moveSpeed = 10;
+        [SerializeField] private float _borderMaxXPosition = 1.95f;
     
         private CharacterController _characterController;
         private Finger _movementFinger;
@@ -63,11 +67,6 @@ namespace Joystick
             }
         
             _characterController.Move(forwardMove + horizontalMove);
-
-            //Vector3 scaledMovement = _moveSpeed * Time.deltaTime * new Vector3(_movementAmount.x, 0, 0);//_movementAmount.y);
-
-            //_characterController.transform.LookAt(_characterController.transform.position + scaledMovement, Vector3.up);
-            //_characterController.Move(scaledMovement);
         }
 
         private void HandleFingerDown(Finger touchedFinger)
@@ -76,6 +75,7 @@ namespace Joystick
             {
                 if (!_isMoveSpeedEnabled)
                 {
+                    _isMoveSpeedEnabled = true;
                     EnableMoveSpeed();
                 }
 

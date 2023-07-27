@@ -1,48 +1,69 @@
-using UnityEngine;
+using System.Collections;
 using Cinemachine;
+using UnityEngine;
 
-public class CinemachineShake : MonoBehaviour
+namespace CameraShake
 {
-    public static CinemachineShake Instance { get; private set; }
+    [RequireComponent(typeof(CinemachineVirtualCamera))]
+    public class CinemachineShake : MonoBehaviour
+    {
+        public static CinemachineShake Instance { get; private set; }
+
+        [SerializeField] private float _resetTime = 3;
     
-    private CinemachineVirtualCamera _cinemachineVirtualCamera;
-    private float _shakeTimer;
-    private float _shakeTimerTotal;
-    private float _startingIntensity;
+        private CinemachineVirtualCamera _cinemachineVirtualCamera;
+        private float _shakeTimer;
+        private float _shakeTimerTotal;
+        private float _startingIntensity;
+        private bool _isCoroutineEnd = true;
 
-    private void Awake()
-    {
-        Instance = this;
-        _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-    }
-
-    private void Update()
-    {
-        if (_shakeTimer > 0.0f)
+        private void Awake()
         {
-            IntensityFade();
+            Instance = this;
+            _cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
         }
-    }
 
-    public void ShakeCamera(float intensity, float time)
-    {
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        private void Update()
+        {
+            if (_shakeTimer > 0.0f)
+            {
+                IntensityFade();
+            }
+        }
 
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        public void ShakeCamera(float intensity, float time)
+        {
+            if (_isCoroutineEnd)
+            {
+                _isCoroutineEnd = false;
+                StartCoroutine(ResetCameraShake(intensity, time));
+            }
+        }
 
-        _startingIntensity = intensity;
-        _shakeTimerTotal = time;
-        _shakeTimer = time;
+        private IEnumerator ResetCameraShake(float intensity, float time)
+        {
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-        Vibrator.Vibrate();
-    }
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
 
-    private void IntensityFade()
-    {
-        _shakeTimer -= Time.deltaTime;
+            _startingIntensity = intensity;
+            _shakeTimerTotal = time;
+            _shakeTimer = time;
 
-        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            Vibrator.Vibrate();
+            
+            yield return new WaitForSeconds(_resetTime);
 
-        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(_startingIntensity, 0.0f, 1 - _shakeTimer / _shakeTimerTotal);
+            _isCoroutineEnd = true;
+        }
+
+        private void IntensityFade()
+        {
+            _shakeTimer -= Time.deltaTime;
+
+            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(_startingIntensity, 0.0f, 1 - _shakeTimer / _shakeTimerTotal);
+        }
     }
 }

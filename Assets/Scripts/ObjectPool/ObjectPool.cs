@@ -18,6 +18,7 @@ namespace ObjectPool
         [SerializeField] private GameObject _wall4Prefab;
         [SerializeField] private GameObject _wall5Prefab;
         
+        [Space]
         [SerializeField] private int _poolNumber = 5;
 
         private List<GameObject> _trackPooledObjects;
